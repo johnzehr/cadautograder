@@ -1,0 +1,101 @@
+
+<!doctype html>
+
+
+<head>
+<title>Test</title> 
+<link rel="stylesheet" type="text/css" href="/static/styles/styles.css?1422585377">
+    <meta charset=utf-8> 
+</head>
+    <body>
+        <h1>CAD Autograder</h1>
+        <p>Welcome to the CAD Autograder, developed by students from Duke University. This program allows you to compare
+            student DXF files against a fully correct one and produce a grade for each student. <br> 
+            This autograder can check for the following errors: <br>
+            -Incorrect, missing, or extra lines, circles, ellipses, arcs, or hatching<br>
+            -Incorrect scale<br>
+            -Incorret orientation (rotation error)<br>
+            -Incorrect lineweight or color<br><br>
+        This Autograder grades each entity individually, sums the grades and divides by the total number of entities to produce a
+         final student grade.<br>
+         -Dropdown menus to give suggested grading options, but you can also type in specific values.<br>
+         -For extra entities, select how many points out of 100 you want to be subtracted for each extra entity.<br>
+         -Color, lineweight, and hatching errors are specific to an entity. For these errors, select what percentage of each entity you want subtracted.
+         (for example, if you enter "10" for lineweight error, a line with correct dimensions but incorrect lineweight will be considered a 90% correct entity)<br>
+         -Scaling and rotation penalties are applied and subtracted from the final grade at the end.<br>
+         -Click on the 'Start grading!' button when all information has been input. Results will be outputted in a text file.<br>
+      </p>
+      <div class=".container">
+        <form enctype = "multipart/form-data" action='/my-link/' method="post">
+            <label>Choose the folder containing student files:</label>
+            <input type="file" webkitdirectory directory multiple name="student_files" id="filename" value="" required/>
+            <label>Choose the folder containing the correct file:</label>
+            <input type="file" webkitdirectory directory multiple  name="correct_files" required/>
+                <label>Output detail:</label>
+                <select name="verbose" id="verbose" required>
+                    <option value=0>grades</option>
+                    <option value=1>grades and mistakes</option>
+                    <option value=2>grades, mistakes, extra detail</option>
+                </select>
+                <label>Set accuracy threshold (rounding to what decimal/how many decimal points need to be the same for an entity to be correct):</label>
+                <input type="number" name="thresh" list="thresh" required><br />
+                <datalist id="thresh" type="text">
+                    <option value=1>1 decimal point</option>
+                    <option value=2>2 decimal points</option>
+                    <option value=3>3 decimal points</option>
+                </datalist>
+                <label>Set extra entity penalty:</label>
+                <input type="number" name="extra_ent_penalty" required list="extra_ent_penalty"> <br />
+                <datalist id="extra_ent_penalty" type="text">
+                    <option value=0>no points lost for extra entities</option>
+                    <option value=1>1 point lost for each extra</option>
+                    <option value=5>5 points lost for each extra</option>
+                    <option value=10>10 points lost for each extra</option>
+                </datalist>
+                <label>Set hatching error penalty:</label><br />
+                <input type="number" required name="hatch_error_penalty" list="hatch_error_penalty">
+                <datalist id="hatch_error_penalty" type="text">
+                    <option value=0>no penalty for hatching errors </option>
+                    <option value=5>5% lost for hatching errors</option>
+                    <option value=10>10% lost for hatching errors</option>
+                    <option value=25>25% lost for hatching errors</option>
+                </datalist>
+                <label>Set coloring error penalty:</label><br />  
+                <input type="number" required name="color_error_penalty" list="color_error_penalty">
+                <datalist id="color_error_penalty" type="text">
+                    <option value=0>no penalty for color errors </option>
+                    <option value=5>5% lost for color errors</option>
+                    <option value=10>10% lost for color errors</option>
+                    <option value=25>25% lost for color errors</option>
+                </datalist>
+                <label>Set lineweight error penalty:</label><br />  
+                <input type="number" required name="lw_error_penalty" list="lw_error_penalty"> <br>
+                <datalist id="lw_error_penalty" type="text">
+                    <option value=0>no penalty for lineweight errors </option>
+                    <option value=5>5% lost for lineweight errors</option>
+                    <option value=10>10% lost for lineweight errors</option>
+                    <option value=25>25% lost for lineweight errors</option>
+                </datalist>
+                <label>Set scaling error penalty:</label><br />    
+                <input type="number" required name="scaling_error" list="scaling_error">
+                <datalist id="scaling_error" type="text">
+                    <option value=0>no penalty for a scaling error </option>
+                    <option value=5>5 points lost for a scaling error</option>
+                    <option value=10>10 points lost for a scaling error</option>
+                    <option value=15>15 points lost for a scaling error</option>
+                </datalist>
+                <label>Set rotation error penalty:</label><br />   
+                <input type="number" required name="rot_error" list="rot_error"><br /><br>
+                <datalist id="rot_error" type="text">
+                    <option value=0>no penalty for a rotation error </option>
+                    <option value=5>5 points lost for a rotation error</option>
+                    <option value=10>10 points lost for a rotation error</option>
+                    <option value=15>15 points lost for a rotation error</option>
+                </datalist>
+
+            <input type="submit" name="form" value="Start grading!" />
+        </form>
+    </div>
+        
+
+    </body>

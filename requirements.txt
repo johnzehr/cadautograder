@@ -1,0 +1,4 @@
+Flask==1.1.2
+numpy==1.19.0
+ezdxf==0.16.3
+PySimpleGUI==4.45.0

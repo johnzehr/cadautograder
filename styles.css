@@ -1,0 +1,17 @@
+.container
+{
+    width:500px;
+    clear: both;
+    }
+label{
+        display:inline-block;
+        width:200000px;
+        margin-right:30px;
+        text-align:left;
+        }
+
+    
+.container input{
+    width: 100%;
+  clear: both;
+    }
